@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お楽しみボタン</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f0f8ff; /* 薄い水色の背景 */
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .fun-button {
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #4CAF50; /* 優しい緑色 */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px #388E3C; /* ボタンの厚み */
+            transition: all 0.1s;
+        }
+        .fun-button:hover {
+            background-color: #45a049;
+        }
+        .fun-button:active {
+            box-shadow: 0 2px #388E3C; /* 押した時に厚みを減らす */
+            transform: translateY(3px); /* 押した時に少し下に下がる */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>お楽しみボタン</h1>
+    <button class="fun-button" onclick="playSound()">こんにちは</button>
+
+    <audio id="audioFile" src="mazdavoice.mp3"></audio>
+
+    <script>
+        function playSound() {
+            const audio = document.getElementById('audioFile');
+            audio.currentTime = 0; // 連続で押しても最初から再生されるようにする
+            
+            // 音声の再生を実行
+            audio.play().catch(function(error) {
+                console.log("再生エラー:", error);
+                alert("音が鳴らない場合は、画面のどこかを一度クリックしてからもう一度ボタンを押してください。");
+            });
+        }
+    </script>
+
+</body>
+</html>
